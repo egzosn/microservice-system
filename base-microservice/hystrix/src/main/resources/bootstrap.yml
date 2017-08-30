@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: hystrix
+  cloud:
+    config:
+      uri: http://config:8888
+      profile: local

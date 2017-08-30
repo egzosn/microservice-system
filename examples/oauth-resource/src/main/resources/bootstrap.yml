@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: oauth-resource
+  cloud:
+    config:
+      uri: http://config:8888
+      profile: local
+encrypt:
+  failOnError: false

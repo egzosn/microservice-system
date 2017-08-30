@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-boot-admin
+  cloud:
+    config:
+      uri: http://config:8888
+      profile: local
+    loadbalancer:
+      retry:
+        enabled: true
+  boot:
+    admin:
+      turbine:
+        url: http://turbine:7090/turbine.stream
+        clusters: moredo

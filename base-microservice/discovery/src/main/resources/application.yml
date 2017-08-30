@@ -1,0 +1,23 @@
+server:
+  port: 8761
+
+eureka:
+  server:
+    #关闭自我保护模式
+    enable-self-preservation: false
+    #更新率阈值
+    renewal-percent-threshold: 0.8
+  instance:
+    appname: discovery
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:${server.port}/eureka/
+    fetch-registry: false
+    #是否注册到eureka
+    register-with-eureka: false
+
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true

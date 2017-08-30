@@ -1,0 +1,13 @@
+server:
+  port: 7020
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+    registry-fetch-interval-seconds: 5
+  instance:
+    appname: spring-boot-admin
+    metadata-map:
+      cluster: moredo
+    lease-renewal-interval-in-seconds: 10

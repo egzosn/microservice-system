@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.moredo</groupId>
+    <artifactId>microservice-system</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <modules>
+        <module>base-microservice</module>
+        <module>common</module>
+        <module>examples</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!--<version>1.3.7.RELEASE</version>-->
+        <version>1.4.2.RELEASE</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <docker.image.prefix>moredo</docker.image.prefix>
+        <docker.plugin.version>0.4.13</docker.plugin.version>
+        <docker.skip.build>true</docker.skip.build>
+        <docker.host>http://docker-server:2375</docker.host>
+        <moredo.comm.version>0.1.0-SNAPSHOT</moredo.comm.version>
+        <commons-dbcp.version>2.0.1</commons-dbcp.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
+        <javax.inject.version>1</javax.inject.version>
+        <jsr250-api.version>1.0</jsr250-api.version>
+        <spring.data.redis-version>1.7.2.RELEASE</spring.data.redis-version>
+        <spring.data.mongodb-version>1.9.2.RELEASE</spring.data.mongodb-version>
+        <spring.data.version>1.12.2.RELEASE</spring.data.version>
+        <org.apache.commons.version>3.4</org.apache.commons.version>
+        <commons-fileupload.version>1.2.2</commons-fileupload.version>
+        <commons-io.version>2.4</commons-io.version>
+        <net.zz.sql.version>1.0.RELEASE</net.zz.sql.version>
+        <org.apache.poi.version>3.9</org.apache.poi.version>
+        <joda-time.version>2.7</joda-time.version>
+        <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.1.2</thymeleaf-layout-dialect.version>
+        <spring-boot-admin.version>1.4.6</spring-boot-admin.version>
+    </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>moredo-snapshot</id>
+            <url>http://nexus-server:8081/nexus/content/groups/public-snapshots</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>moredo-release</id>
+            <url>http://nexus-server:8081/nexus/content/groups/public</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/libs-snapshot-local</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-snapshots-continuous</id>
+            <name>Spring Snapshots Continuous</name>
+            <url>http://repo.spring.io/libs-snapshot-continuous-local</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/libs-milestone-local</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>http://repo.spring.io/libs-release-local</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>moredo-Snapshot</id>
+            <name>moredo-Snapshot</name>
+            <url>http://nexus-server:8081/nexus/content/groups/public-snapshots</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+
+        </repository>
+        <repository>
+            <id>moredo-Releases</id>
+            <name>moredo-Releases</name>
+            <url>http://nexus-server:8081/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--暴露各种指标-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- logback日志配置开始 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
+        <!-- logback日志配置结束 -->
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Brixton.SR6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--moredo-->
+            <dependency>
+                <groupId>com.moredo.common</groupId>
+                <artifactId>web</artifactId>
+                <version>${moredo.comm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moredo.common</groupId>
+                <artifactId>utils</artifactId>
+                <version>${moredo.comm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moredo.common</groupId>
+                <artifactId>redis</artifactId>
+                <version>${moredo.comm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moredo</groupId>
+                <artifactId>rabbitmq</artifactId>
+                <version>${moredo.comm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moredo.common</groupId>
+                <artifactId>oauth</artifactId>
+                <version>${moredo.comm.version}</version>
+            </dependency>
+            <!--/moredo-->
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>2.5.0</version>
+            </dependency>
+            <!--net.zz-->
+            <dependency>
+                <groupId>net.zz.sql</groupId>
+                <artifactId>dao-params</artifactId>
+                <version>${net.zz.sql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.zz.sql</groupId>
+                <artifactId>sql-filter</artifactId>
+                <version>${net.zz.sql.version}</version>
+            </dependency>
+            <!--/net.zz-->
+
+            <!--servlet-->
+            <!--<dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <scope>provided</scope>
+                <version>3.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>2.0</version>
+                <scope>provided</scope>
+            </dependency>-->
+            <!--/servlet-->
+            <!--json-->
+
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>20160212</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+            <!--/json-->
+
+            <!-- spring -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <!-- / Spring -->
+
+            <!--validation-->
+            <!-- <dependency>
+                 <groupId>org.hibernate</groupId>
+                 <artifactId>hibernate-validator</artifactId>
+                 <version>${hibernate-validator.version}</version>
+             </dependency>-->
+            <!--  <dependency>
+                  <groupId>javax.validation</groupId>
+                  <artifactId>validation-api</artifactId>
+                  <version>1.0.0.GA</version>
+              </dependency>-->
+            <!--/validation-->
+
+            <!--inject-->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>jsr250-api</artifactId>
+                <version>${jsr250-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${javax.inject.version}</version>
+            </dependency>
+            <!--/inject-->
+            <!-- REDIS -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>${spring.data.redis-version}</version>
+            </dependency>
+            <!-- /REDIS -->
+            <!-- Spring data mongodb -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-mongodb</artifactId>
+                <version>${spring.data.mongodb-version}</version>
+            </dependency>
+
+            <!-- /Spring data mongodb -->
+
+            <!--commons-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${org.apache.commons.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.8</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+                <version>1.9</version>
+            </dependency>
+            <!--/commons-->
+
+            <!--qrcode-->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>3.2.1</version>
+            </dependency>
+            <!--qrcode-->
+
+            <!--excel-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${org.apache.poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${org.apache.poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.jxls</groupId>
+                <artifactId>jxls-core</artifactId>
+                <version>1.0.6</version>
+            </dependency>
+            <!--/excel-->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
+            <!--thymeleaf模板引擎-->
+            <dependency>
+                <groupId>org.thymeleaf</groupId>
+                <artifactId>thymeleaf-spring4</artifactId>
+                <version>3.0.2.RELEASE</version>
+            </dependency>
+            <!-- Swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.6.1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>2.6.1</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jolokia</groupId>
+                <artifactId>jolokia-core</artifactId>
+                <version>1.3.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/libs-snapshot-local</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/libs-milestone-local</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

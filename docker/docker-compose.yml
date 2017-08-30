@@ -1,0 +1,24 @@
+discovery:
+  image: moredo/discovery
+  ports:
+   - "8761:8761"
+configserver:
+  image: moredo/config
+  ports:
+   - "8888:8888"
+  links:
+   - discovery
+gateway:
+  image: moredo/api-gateway
+  ports:
+   - "10000:10000"
+  links:
+   - discovery
+   - configserver
+hystrix:
+  image: moredo/hystrix
+  ports:
+   - "7979:7979"
+  links:
+   - gateway
+   - discovery

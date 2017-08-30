@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spring-cloud-bus
+    index: ${INSTANCE_INDEX}
+  cloud:
+    config:
+      uri: http://config:8888
+      profile: local
+encrypt:
+  failOnError: false

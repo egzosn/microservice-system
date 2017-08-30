@@ -1,0 +1,29 @@
+server:
+  port: 8083
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    appname: spring-cloud-bus
+    metadata-map:
+      cluster: moredo
+
+ribbon:
+  eureka:
+    enabled: true
+
+security:
+  sessions: NEVER
+
+spring:
+  zipkin:
+    enabled: false
+    base-url: http://zipkin:7411
+  rabbitmq:
+    host: rabbit-server
+    port: 5672
+    virtual-host: /test
+    username: test
+    password: test

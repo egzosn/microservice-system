@@ -1,0 +1,26 @@
+server:
+  port: 8087
+
+swagger:
+  package: com.moredo.example.mybatis.controller
+  title: Mybatis
+  description: Mybatis使用示例！
+  termsOfServiceUrl: https://github.com/MoreDo
+  contact:
+    name: MoreDo
+    url: https://github.com/MoreDo
+    email: 419092109@qq.com
+  version: 1.0
+
+spring:
+  zipkin:
+    base-url: http://zipkin:7411
+    enabled: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mysql-server:3306/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+
+mybatis:
+  type-aliases-package: com.moredo.example.mybatis.entity

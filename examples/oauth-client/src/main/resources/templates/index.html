@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>货兜</title>
+
+    <!-- JavaScript files start -->
+    <script type="text/javascript" src="../static/js/jquery/jquery.min.js" th:src="@{/js/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" src="../static/js/common/common-http.js" th:src="@{/js/common/common-http.js}"></script>
+    <script type="text/javascript" src="../static/js/page/index.js" th:src="@{/js/page/index.js}"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <h1>OAUTH权限测试！</h1>
+    <!--<button type="button" class="btn btn-primary" onclick="testOpen()">公开接口测试</button>-->
+    <!--<button type="button" class="btn btn-primary" onclick="testDisabled()">无权限接口测试</button>-->
+    <button type="button" class="btn btn-primary" onclick="testHasAuth()">有权限接口测试</button>
+</div>
+</body>
+
+</html>

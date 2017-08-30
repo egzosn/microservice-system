@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>登录</title>
+
+    <!-- JavaScript files start -->
+    <script type="text/javascript" src="../static/js/jquery/jquery.min.js" th:src="@{/js/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" src="../static/js/common/common-http.js" th:src="@{/js/common/common-http.js}"></script>
+    <script type="text/javascript" src="../static/js/page/login.js" th:src="@{/js/page/login.js}"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Login</h1>
+    </div>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password"/>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="login()">Submit</button>
+</div>
+</body>
+
+</html>

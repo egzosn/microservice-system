@@ -1,0 +1,35 @@
+server:
+  port: 8086
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: message_channel
+          binder: rabbit
+#        reply_input:
+#          destination: reply_channel
+#          binder: rabbit
+#        error_input:
+#          destination: error_channel
+#          binder: rabbit
+#        error_output:
+#          destination: error_channel
+#          binder: rabbit
+      binders:
+          rabbit:
+            type: rabbit
+            environment:
+              spring:
+                rabbitmq:
+                  host: rabbit-server #rabbitMQ服务器地址
+                  port: 5672          #rabbitMQ服务器端口
+                  username: test
+                  password: test
+                  virtual-host: /test
+
+#  rabbitmq:
+#    listener:
+#      acknowledge-mode: manual
+

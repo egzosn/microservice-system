@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    appname: feign-client
+    metadata-map:
+      cluster: moredo
+
+ribbon:
+  eureka:
+    enabled: true
+
+netflix:
+  blitz4j:
+    printLoggingErrors: true
+
+security:
+  sessions: NEVER
+
+spring:
+  zipkin:
+    base-url: 'http://zipkin:7411/'
+    enabled: false

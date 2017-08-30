@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: uua
+  cloud:
+    config:
+      profile: local
+      uri: http://config:8888
+encrypt:
+  failOnError: false

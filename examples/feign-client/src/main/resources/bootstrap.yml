@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: feign-client
+  cloud:
+    config:
+      uri: http://config:8888
+encrypt:
+  failOnError: false

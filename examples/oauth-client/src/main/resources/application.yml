@@ -1,0 +1,30 @@
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    appname: oauth-client
+    metadata-map:
+      cluster: moredo
+
+ribbon:
+  eureka:
+    enabled: true
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enable: true
+      force: true
+
+moredo:
+  auth:
+    server: http://uua:9999/oauth/token
+    client_id: user
+    client_secret: user_secret
+    grant_type: password
+    scope: read write

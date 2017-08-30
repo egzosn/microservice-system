@@ -1,0 +1,60 @@
+server:
+  port: 8087
+
+swagger:
+  package: com.moredo.example.oauth.resource.controller
+  title: 用户中心
+  description: 用户中心微服务
+  termsOfServiceUrl: https://github.com/MoreDo
+  contact:
+    name: MoreDo
+    url: https://github.com/MoreDo
+    email: 419092109@qq.com
+  version: 1.0
+
+spring:
+  aop:
+    proxy-target-class: true
+  zipkin:
+    base-url: http://zipkin:7411
+    enabled: false
+  datasource:
+    url: jdbc:mysql://mysql-server:3306/user?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useOldAliasMetadataBehavior=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    max-active: 20
+    max-idle: 8
+    min-idle: 8
+    initial-size: 10
+    #指定连接多久没被使用时，被设置为空闲，默认为10ms
+    idle-timeout: 10
+    #验证连接的有效性
+    test-while-idle: true
+    validation-query: select 1 from dual
+    #空闲连接回收的时间间隔，与test-while-idle一起使用，设置5分钟
+    time-between-eviction-runs-millis: 300000
+    #连接池空闲连接的有效时间 ，设置30分钟
+    min-evictable-idle-time-millis: 1800000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    appname: oauth-resource
+    metadata-map:
+      cluster: moredo
+
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://uua:9999/oauth/token
+      userAuthorizationUri: http://uua:9999/oauth/authorize
+      clientId: acme
+      clientSecret: acmesecret
+    resource:
+      token-info-uri: http://uua:9999/oauth/check_token
+      prefer-token-info: true
+      user-info-uri: http://uua:9999/userinfo
+      id: user

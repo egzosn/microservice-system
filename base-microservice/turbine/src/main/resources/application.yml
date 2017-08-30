@@ -1,0 +1,17 @@
+server:
+  port: 7090
+
+eureka:
+  instance:
+    appname: turbine
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+
+turbine:
+  app-config: feign-client,feign-server
+  aggregator:
+    clusterConfig: moredo
+  cluster-name-expression: metadata['cluster']
